@@ -1,0 +1,42 @@
+i2c:
+  id: port_a
+  sda: GPIO2
+  scl: GPIO1
+  scan: true
+  frequency: 100000
+
+external_components:
+  - source: github://dayowe/esphome@m5stack_hbridge
+    components: [m5stack_hbridge]
+
+m5stack_hbridge:
+  id: my_hbridge
+  sda: 2
+  scl: 1
+  i2c_addr: 0x20  # Ensure this matches the DIP switch settings
+  speed: 100000
+
+switch:
+  - platform: template
+    name: "H-Bridge Forward"
+    turn_on_action:
+      - lambda: |-
+          ESP_LOGD("H-Bridge Forward", "Switch turned on");
+          id(my_hbridge).set_direction(m5stack_hbridge::HBRIDGE_FORWARD);
+          id(my_hbridge).set_speed8bits(127);
+
+  - platform: template
+    name: "H-Bridge Reverse"
+    turn_on_action:
+      - lambda: |-
+          ESP_LOGD("H-Bridge Reverse", "Switch turned on");
+          id(my_hbridge).set_direction(m5stack_hbridge::HBRIDGE_BACKWARD);
+          id(my_hbridge).set_speed8bits(127);
+
+  - platform: template
+    name: "H-Bridge Stop"
+    turn_on_action:
+      - lambda: |-
+          ESP_LOGD("H-Bridge Stop", "Switch turned on");
+          id(my_hbridge).set_direction(m5stack_hbridge::HBRIDGE_STOP);
+          id(my_hbridge).set_speed8bits(0);
