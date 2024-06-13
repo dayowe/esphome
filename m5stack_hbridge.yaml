@@ -6,8 +6,11 @@ i2c:
   frequency: 100000
 
 external_components:
-  - source: github://dayowe/esphome@m5stack_hbridge
-    components: [m5stack_hbridge]
+  - source:
+      type: git
+      url: https://github.com/dayowe/esphome/
+      ref: master
+    components: m5stack_hbridge
 
 m5stack_hbridge:
   id: my_hbridge
