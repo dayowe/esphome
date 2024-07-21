@@ -1,0 +1,52 @@
+external_components:
+  - source:
+      type: git
+      url: https://github.com/dayowe/esphome
+      ref: master
+    components: [gp8413]
+    refresh: 1s
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: True
+
+gp8413:
+  id: gp8413_component
+  voltage: 10V  # Set the output range to 5V or 10V
+
+output:
+  - platform: gp8413
+    gp8413_id: gp8413_component
+    id: gp8413_output_channel_0
+    channel: 0
+
+  - platform: gp8413
+    gp8413_id: gp8413_component
+    id: gp8413_output_channel_1
+    channel: 1
+
+number:
+  - platform: template
+    name: "Analog Output Channel 0"
+    id: analog_output_channel_0
+    min_value: 0
+    max_value: 10
+    step: 0.1
+    optimistic: true
+    set_action:
+      - output.set_level:
+          id: gp8413_output_channel_0
+          level: !lambda 'return x / 10.0;'
+
+  - platform: template
+    name: "Analog Output Channel 1"
+    id: analog_output_channel_1
+    min_value: 0
+    max_value: 10
+    step: 0.1
+    optimistic: true
+    set_action:
+      - output.set_level:
+          id: gp8413_output_channel_1
+          level: !lambda 'return x / 10.0;'
