@@ -16,11 +16,13 @@ namespace esphome {
       void setup() override;
       void dump_config() override;
       void set_voltage(GP8413Voltage voltage) { this->voltage_ = voltage; }
-      void write_register(uint8_t reg, uint8_t *data, uint8_t len);
+      i2c::ErrorCode write_register(uint8_t reg, uint8_t *data, uint8_t len);
 
     protected:
       GP8413Voltage voltage_;
     };
+
+    static const uint8_t RANGE_REGISTER = 0x00;  // Define RANGE_REGISTER
 
   }  // namespace m5stack_dac2
 }  // namespace esphome
