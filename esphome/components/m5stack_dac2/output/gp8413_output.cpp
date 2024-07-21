@@ -19,7 +19,8 @@ namespace esphome {
       data[0] = (value >> 8) & 0x7F;  // High byte
       data[1] = value & 0xFF;         // Low byte
       
-      i2c::ErrorCode err = this->parent_->write_register(OUTPUT_REGISTER + (2 * this->channel_), data, 2);
+      // Ensure write_register returns a value
+      auto err = this->parent_->write_register(OUTPUT_REGISTER + (2 * this->channel_), data, 2);
       if (err != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "Error writing to GP8413, code %d", err);
       }
