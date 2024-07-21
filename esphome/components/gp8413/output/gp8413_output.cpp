@@ -16,9 +16,12 @@ namespace esphome {
 
         void GP8413Output::write_state(float state) {
             uint16_t value = (uint16_t)(state * 32767);
+            ESP_LOGD(TAG, "Writing state %.2f to GP8413 on channel %u as value %u", state, this->channel_, value);
             i2c::ErrorCode err = this->parent_->write_register(OUTPUT_REGISTER + (2 * this->channel_), (uint8_t*)&value, 2);
             if (err != i2c::ERROR_OK) {
                 ESP_LOGE(TAG, "Error writing to GP8413, code %d", err);
+            } else {
+                ESP_LOGD(TAG, "Successfully wrote value %u to GP8413 on channel %u", value, this->channel_);
             }
         }
 
