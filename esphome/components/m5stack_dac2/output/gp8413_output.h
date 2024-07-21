@@ -7,7 +7,7 @@
 namespace esphome {
   namespace m5stack_dac2 {
 
-    class GP8413Output : public Component, public output::FloatOutput, public Parented<GP8413> {
+    class GP8413Output : public Component, public output::FloatOutput, public Parented<esphome::m5stack_dac2::GP8413> {
     public:
       void dump_config() override;
       float get_setup_priority() const override { return setup_priority::DATA - 1; }
