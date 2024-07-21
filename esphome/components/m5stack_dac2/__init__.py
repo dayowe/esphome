@@ -7,10 +7,10 @@ CODEOWNERS = ["@your_github_username"]
 DEPENDENCIES = ["i2c"]
 MULTI_CONF = True
 
-gp8413_ns = cg.esphome_ns.namespace("gp8413")
-GP8413 = gp8413_ns.class_("GP8413", cg.Component, i2c.I2CDevice)
+m5stack_dac2_ns = cg.esphome_ns.namespace("m5stack_dac2")
+GP8413 = m5stack_dac2_ns.class_("GP8413", cg.Component, i2c.I2CDevice)
 
-GP8413Voltage = gp8413_ns.enum("GP8413Voltage")
+GP8413Voltage = m5stack_dac2_ns.enum("GP8413Voltage")
 
 CONF_GP8413_ID = "gp8413_id"
 

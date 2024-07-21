@@ -3,11 +3,11 @@ import esphome.config_validation as cv
 from esphome.components import i2c, output
 from esphome.const import CONF_ID, CONF_CHANNEL
 
-from .. import gp8413_ns, GP8413, CONF_GP8413_ID
+from .. import m5stack_dac2_ns, GP8413, CONF_GP8413_ID
 
-DEPENDENCIES = ["gp8413"]
+DEPENDENCIES = ["m5stack_dac2"]
 
-GP8413Output = gp8413_ns.class_(
+GP8413Output = m5stack_dac2_ns.class_(
     "GP8413Output", cg.Component, i2c.I2CDevice, output.FloatOutput
 )
 

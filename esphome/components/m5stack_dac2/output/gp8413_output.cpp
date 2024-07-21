@@ -2,9 +2,9 @@
 #include "esphome/core/log.h"
 
 namespace esphome {
-  namespace gp8413 {
+  namespace m5stack_dac2 {
 
-    static const char *TAG = "gp8413.output";
+    static const char *TAG = "m5stack_dac2.output";
 
     static const uint8_t OUTPUT_REGISTER = 0x02;
 
@@ -25,5 +25,5 @@ namespace esphome {
       }
     }
 
-  }  // namespace gp8413
+  }  // namespace m5stack_dac2
 }  // namespace esphome
