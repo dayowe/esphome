@@ -7,7 +7,7 @@ external_components:
     refresh: 1s
 
 substitutions:
-  voltage: "10" #set voltage to 5V or 10V
+  voltage: "10" # Set voltage to 5V or 10V
 
 i2c:
   sda: GPIO21
@@ -34,7 +34,7 @@ number:
     name: "Analog Output Channel 0"
     id: analog_output_channel_0
     min_value: 0
-    max_value: !lambda 'return ${voltage}.0;'
+    max_value: ${voltage}
     step: 0.1
     optimistic: true
     set_action:
@@ -46,7 +46,7 @@ number:
     name: "Analog Output Channel 1"
     id: analog_output_channel_1
     min_value: 0
-    max_value: !lambda 'return ${voltage}.0;'
+    max_value: ${voltage}
     step: 0.1
     optimistic: true
     set_action:
